@@ -2646,6 +2646,23 @@ do
                     Depbox:Resize();
                     return;
                 end;
+                if Elem.Type == 'Slider' then
+                    if type(Dependency[3]) == 'string' then
+                        if Dependency[3] == 'Greater' then
+                            if Elem.Value < Value then
+                                Holder.Visible = false;
+                                Depbox:Resize();
+                                return;
+                            end
+                        else
+                            if Elem.Value > Value then
+                                Holder.Visible = false;
+                                Depbox:Resize();
+                                return;
+                            end
+                        end
+                    end
+				end;
             end;
 
             Holder.Visible = true;
