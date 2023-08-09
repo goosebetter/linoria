@@ -46,26 +46,6 @@ local Library = {
     ScreenGui = ScreenGui;
 };
 
-local RainbowStep = 0
-local Hue = 0
-
-table.insert(Library.Signals, RenderStepped:Connect(function(Delta)
-    RainbowStep = RainbowStep + Delta
-
-    if RainbowStep >= (1 / 60) then
-        RainbowStep = 0
-
-        Hue = Hue + (1 / 400);
-
-        if Hue > 1 then
-            Hue = 0;
-        end;
-
-        Library.CurrentRainbowHue = Hue;
-        Library.CurrentRainbowColor = Color3.fromHSV(Hue, 0.8, 1);
-    end
-end))
-
 local function GetPlayersString()
     local PlayerList = Players:GetPlayers();
 
@@ -2660,6 +2640,12 @@ do
                                 Depbox:Resize();
                                 return;
                             end
+                        end
+                    else
+                        if Elem.Value > Value then
+                            Holder.Visible = false;
+                            Depbox:Resize();
+                            return;
                         end
                     end
 				end;
